@@ -3,7 +3,7 @@ import uuid
 from flask import Flask, request, jsonify, send_from_directory, abort
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
 CORS(app)
 
 UPLOAD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
@@ -11,11 +11,9 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.route('/')
 def index():
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_from_directory( 'index.html')
 
-@app.route('/static/<path:path>')
-def serve_static(path):
-    return send_from_directory(app.static_folder, path)
+
 
 @app.route('/api/upload', methods=['POST'])
 def upload_file():
