@@ -1,6 +1,6 @@
 import os
 import uuid
-from flask import Flask, request, jsonify, send_from_directory, abort
+from flask import Flask, request, jsonify, send_from_directory, abort, render_template
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -11,7 +11,7 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 @app.route('/')
 def index():
-    return send_from_directory( 'index.html')
+    return render_template( 'index.html')
 
 
 
